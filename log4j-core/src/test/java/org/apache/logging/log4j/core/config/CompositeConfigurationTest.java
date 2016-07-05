@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.Appender;
 import org.apache.logging.log4j.core.appender.ConsoleAppender;
 import org.apache.logging.log4j.core.appender.FileAppender;
@@ -90,6 +91,7 @@ public class CompositeConfigurationTest {
                 assertEquals("Expected 2 Appender references for cat1 but got " + appendersMap.size(), 2,
                         appendersMap.size());
                 assertTrue(appendersMap.get("STDOUT") instanceof ConsoleAppender);
+                assertEquals( Level.INFO, config.getLogger( "cat1" ).getLevel());
 
                 appendersMap = config.getLogger("cat2").getAppenders();
                 assertEquals("Expected 1 Appender reference for cat2 but got " + appendersMap.size(), 1,
